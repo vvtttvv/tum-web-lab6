@@ -4,9 +4,13 @@ import { DayTabs } from './features/projects/components/DayTabs'
 import { ProjectsFilters } from './features/projects/components/ProjectsFilters'
 import { ProjectsFooterNav } from './features/projects/components/ProjectsFooterNav'
 import { ProjectsHeader } from './features/projects/components/ProjectsHeader'
-import { ProjectsList } from './features/projects/components/ProjectsList'
 import { buildId, days, defaultProjectForm } from './features/projects/model/constants'
+import { indexedDbProjectsRepository } from './features/projects/model/repository'
+import { parseDurationToSeconds } from './features/projects/model/time'
 import type { ProjectFormState, Session, Theme } from './features/projects/model/types'
+import { useProjectsStore } from './features/projects/model/useProjectsStore'
+import { ProjectsList } from './features/projects/projectList'
+import { StatsView } from './features/projects/stats'
 
 function App() {
   const [theme, setTheme] = useState<Theme>(() => {
@@ -14,9 +18,10 @@ function App() {
     return saved === 'light' ? 'light' : 'dark'
   })
 
-  const [sessions, setSessions] = useState<Session[]>([])
+  const { sessions, addSession, updateSession, hydrated } = useProjectsStore(indexedDbProjectsRepository)
   const [isCreateOpen, setIsCreateOpen] = useState(false)
   const [form, setForm] = useState<ProjectFormState>(defaultProjectForm)
+  const [activeTab, setActiveTab] = useState<'projects' | 'stats'>('projects')
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
@@ -46,12 +51,14 @@ function App() {
     const nextSession: Session = {
       id: buildId(),
       title: cleanName,
-      elapsed: '0h 00m',
-      total: form.duration,
+      elapsedSeconds: 0,
+      totalSeconds: parseDurationToSeconds(form.duration),
       color: form.selectedColor,
+      timerSettings: form.timerSettings,
+      dailyLog: {},
     }
 
-    setSessions((prev) => [...prev, nextSession])
+    addSession(nextSession)
     setIsCreateOpen(false)
     setForm(defaultProjectForm)
   }
@@ -64,17 +71,37 @@ function App() {
     <main className="layout-shell">
       <section className="dashboard">
         <div className="dashboard-section">
-          <ProjectsHeader theme={theme} onToggleTheme={toggleTheme} />
-          <DayTabs days={days} />
-          <ProjectsFilters count={sessions.length} />
+          <ProjectsHeader
+            theme={theme}
+            onToggleTheme={toggleTheme}
+            title={activeTab === 'stats' ? 'Stats overview' : 'All projects'}
+          />
+          {activeTab === 'projects' ? (
+            <>
+              <DayTabs days={days} />
+              <ProjectsFilters count={sessions.length} />
+            </>
+          ) : null}
         </div>
 
         <div className="projects-scroll-area">
-          <ProjectsList sessions={sessions} />
+          {hydrated ? (
+            activeTab === 'projects' ? (
+              <ProjectsList sessions={sessions} onUpdateSession={updateSession} />
+            ) : (
+              <StatsView sessions={sessions} />
+            )
+          ) : (
+            <article className="empty-state">Loading...</article>
+          )}
         </div>
 
         <div className="dashboard-section dashboard-footer">
-          <ProjectsFooterNav onCreate={() => setIsCreateOpen(true)} />
+          <ProjectsFooterNav
+            onCreate={() => setIsCreateOpen(true)}
+            activeTab={activeTab}
+            onNavigate={setActiveTab}
+          />
         </div>
       </section>
 

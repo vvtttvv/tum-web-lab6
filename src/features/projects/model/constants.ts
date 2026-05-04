@@ -1,4 +1,4 @@
-import type { Day, ProjectFormState } from './types'
+import type { Day, ProjectFormState, TimerSettings } from './types'
 
 export const days: Day[] = [
   { label: 'Fri', date: '27' },
@@ -32,12 +32,20 @@ export const colorOptions = [
   '#748ea0',
 ]
 
+export const defaultTimerSettings: TimerSettings = {
+  focusMinutes: 25,
+  shortBreakMinutes: 5,
+  longBreakMinutes: 10,
+  cycles: 3,
+}
+
 export const defaultProjectForm: ProjectFormState = {
   projectName: '',
   duration: '1h 00m',
   frequency: 'repeating',
   period: 'daily',
   selectedColor: '#1ec8bc',
+  timerSettings: defaultTimerSettings,
 }
 
 export const buildId = () =>

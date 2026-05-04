@@ -3,12 +3,13 @@ import type { Theme } from '../model/types'
 type ProjectsHeaderProps = {
   theme: Theme
   onToggleTheme: () => void
+  title?: string
 }
 
-export function ProjectsHeader({ theme, onToggleTheme }: ProjectsHeaderProps) {
+export function ProjectsHeader({ theme, onToggleTheme, title = 'All projects' }: ProjectsHeaderProps) {
   return (
     <header className="projects-header">
-      <h1 className="projects-title">All projects</h1>
+      <h1 className="projects-title">{title}</h1>
 
       <div className="header-actions">
         <button className="icon-btn" aria-label="Menu" type="button">

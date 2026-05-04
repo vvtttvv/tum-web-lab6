@@ -1,4 +1,4 @@
-import type { FormEvent } from 'react'
+import { type FormEvent, useState } from 'react'
 import { colorOptions, durationOptions } from '../model/constants'
 import type { ProjectFormState } from '../model/types'
 
@@ -11,9 +11,25 @@ type CreateProjectModalProps = {
 }
 
 export function CreateProjectModal({ open, form, onChange, onClose, onSubmit }: CreateProjectModalProps) {
+  const [timerOpen, setTimerOpen] = useState(false)
+
   if (!open) {
     return null
   }
+
+  const updateTimerSetting = (key: keyof ProjectFormState['timerSettings'], value: string) => {
+    const numeric = Number.parseInt(value, 10)
+    const safeValue = Number.isFinite(numeric) ? Math.max(1, numeric) : 1
+
+    onChange({
+      timerSettings: {
+        ...form.timerSettings,
+        [key]: safeValue,
+      },
+    })
+  }
+
+  const timerSummary = `Countdown • ${form.timerSettings.focusMinutes}/${form.timerSettings.shortBreakMinutes}/${form.timerSettings.longBreakMinutes} | ${form.timerSettings.cycles}`
 
   return (
     <div className="create-overlay" role="dialog" aria-modal="true" aria-labelledby="create-title">
@@ -98,14 +114,71 @@ export function CreateProjectModal({ open, form, onChange, onClose, onSubmit }: 
           </div>
         </section>
 
-        <section className="form-card compact">
-          <div className="form-row">
+        <section className={`form-card compact timer-settings${timerOpen ? ' open' : ''}`}>
+          <button
+            type="button"
+            className="form-row timer-toggle"
+            onClick={() => setTimerOpen((prev) => !prev)}
+            aria-expanded={timerOpen}
+          >
             <div>
               <p className="form-title">Timer settings</p>
-              <p className="form-hint">Countdown • 25/5/10 | 3</p>
+              <p className="form-hint">{timerSummary}</p>
             </div>
             <span className="timer-chevron">⌄</span>
-          </div>
+          </button>
+
+          {timerOpen ? (
+            <div className="timer-settings-panel">
+              <label className="field-label" htmlFor="focus-minutes">
+                Focus (min)
+              </label>
+              <input
+                id="focus-minutes"
+                className="field-input compact"
+                type="number"
+                min={1}
+                value={form.timerSettings.focusMinutes}
+                onChange={(event) => updateTimerSetting('focusMinutes', event.target.value)}
+              />
+
+              <label className="field-label" htmlFor="short-break">
+                Short break (min)
+              </label>
+              <input
+                id="short-break"
+                className="field-input compact"
+                type="number"
+                min={1}
+                value={form.timerSettings.shortBreakMinutes}
+                onChange={(event) => updateTimerSetting('shortBreakMinutes', event.target.value)}
+              />
+
+              <label className="field-label" htmlFor="long-break">
+                Long break (min)
+              </label>
+              <input
+                id="long-break"
+                className="field-input compact"
+                type="number"
+                min={1}
+                value={form.timerSettings.longBreakMinutes}
+                onChange={(event) => updateTimerSetting('longBreakMinutes', event.target.value)}
+              />
+
+              <label className="field-label" htmlFor="cycles">
+                Cycles
+              </label>
+              <input
+                id="cycles"
+                className="field-input compact"
+                type="number"
+                min={1}
+                value={form.timerSettings.cycles}
+                onChange={(event) => updateTimerSetting('cycles', event.target.value)}
+              />
+            </div>
+          ) : null}
         </section>
 
         <section className="form-card compact">

@@ -43,7 +43,6 @@ h2 {
   background: linear-gradient(160deg, var(--color-surface) 0%, var(--color-surface-hard) 100%);
   box-shadow: none;
 }
-
 .dashboard-section {
   display: grid;
   gap: 12px;
@@ -51,6 +50,7 @@ h2 {
 
 .dashboard-footer {
   padding-bottom: 2px;
+  width: 100%;
 }
 
 .projects-scroll-area {
@@ -66,6 +66,83 @@ h2 {
 .projects-scroll-area::-webkit-scrollbar-thumb {
   border-radius: 999px;
   background: color-mix(in oklab, var(--color-border) 80%, transparent);
+}
+
+.stats-view {
+  display: grid;
+  gap: 18px;
+}
+
+.stats-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.stats-title {
+  margin: 0;
+  font-size: 1.35rem;
+  color: var(--color-title);
+}
+
+.stats-subtitle {
+  margin: 6px 0 0;
+  color: var(--color-muted);
+}
+
+.stats-summary {
+  display: grid;
+  gap: 4px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
+  background: color-mix(in oklab, var(--color-surface-soft) 85%, transparent);
+  text-align: right;
+}
+
+.stats-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.stats-value {
+  font-size: 1.4rem;
+  color: var(--color-title);
+}
+
+.stats-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stats-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.field-select.compact {
+  height: 36px;
+  padding: 0 10px;
+}
+
+.stats-chart {
+  height: 240px;
+  padding: 16px 12px 12px;
+  border-radius: 18px;
+  border: 1px solid var(--color-border);
+  background: color-mix(in oklab, var(--color-surface-soft) 88%, transparent);
+}
+
+.stats-chart.week,
+.stats-chart.month {
+  display: block;
 }
 
 .projects-header {
@@ -199,6 +276,11 @@ h2 {
   font-size: 0.92rem;
 }
 
+.chip.active {
+  border-color: color-mix(in oklab, var(--color-brand) 55%, var(--color-border));
+  color: var(--color-title);
+}
+
 .remaining-box {
   display: grid;
   gap: 2px;
@@ -226,6 +308,11 @@ h2 {
   border-radius: 24px;
   background: color-mix(in oklab, var(--color-surface-soft) 85%, transparent);
   padding: 16px;
+}
+
+.task-card.active {
+  border-color: color-mix(in oklab, var(--color-brand) 55%, var(--color-border));
+  box-shadow: 0 12px 30px -24px color-mix(in oklab, var(--color-brand) 60%, transparent);
 }
 
 .task-row {
@@ -256,6 +343,12 @@ h2 {
   margin: 6px 0 0;
   font-size: 1.05rem;
   color: var(--color-muted);
+}
+
+.task-timer {
+  margin: 6px 0 0;
+  font-size: 0.9rem;
+  color: var(--color-soft);
 }
 
 .task-arrow {
@@ -331,10 +424,9 @@ h2 {
   border-radius: 22px;
   background: color-mix(in oklab, var(--color-surface-soft) 87%, transparent);
   padding: 10px;
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 25px;
 }
 
 .nav-link {
@@ -388,6 +480,30 @@ h2 {
   gap: 12px;
 }
 
+.timer-settings .timer-toggle {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 0;
+  cursor: pointer;
+}
+
+.timer-settings .timer-chevron {
+  transition: transform 0.2s ease;
+}
+
+.timer-settings.open .timer-chevron {
+  transform: rotate(180deg);
+}
+
+.timer-settings-panel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 12px;
+  margin-top: 12px;
+}
+
 .create-header {
   display: flex;
   align-items: center;
@@ -420,6 +536,10 @@ h2 {
   color: var(--color-title);
   padding: 0 14px;
   font-size: 1.02rem;
+}
+
+.field-input.compact {
+  padding: 8px 10px;
 }
 
 .field-input::placeholder {

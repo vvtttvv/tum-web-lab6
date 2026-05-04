@@ -8,8 +8,9 @@ Initial project skeleton with:
 - Vite + React + TypeScript setup
 - Tailwind integrated through the Vite plugin
 - custom dark/light themes via CSS variables
-- static dashboard layout inspired by the provided mockup
-- theme persistence in localStorage
+- feature-based architecture (projects feature split into model/components)
+- dynamic project creation UI inspired by the provided mockup
+- browser persistence via repository layer (IndexedDB for projects, localStorage for theme)
 
 ## Topic
 
@@ -25,8 +26,9 @@ Pomodoro productivity app for planning and tracking focus sessions.
 
 1. User opens the app and sees today's sessions.
 2. User switches theme between dark and light.
-3. User filters sessions by status.
-4. Next iterations: start/pause/reset timer and track progress live.
+3. User creates a new project through the modal form.
+4. Created projects are restored from IndexedDB after refresh.
+5. Next iterations: start/pause/reset timer and track progress live.
 
 ## Tech Stack
 
@@ -34,6 +36,7 @@ Pomodoro productivity app for planning and tracking focus sessions.
 - Vite
 - Tailwind CSS
 - CSS variables for theming
+- IndexedDB repository abstraction (ready to swap to API)
 
 ## Local Run
 
