@@ -1,4 +1,4 @@
-import type { Day } from '../model/types'
+import type { Day } from '../projectsModel/types'
 
 type DayTabsProps = {
   days: Day[]

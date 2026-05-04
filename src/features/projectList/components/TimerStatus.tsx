@@ -1,4 +1,4 @@
-import type { Session } from '../../model/types'
+import type { Session } from '../../projectsModel/types'
 import { formatTimerClock } from '../utils/time'
 import { formatTimerSettingsSummary, getPhaseLabel } from '../utils/pomodoro'
 import type { TimerInfo } from '../hooks/usePomodoroTimer'

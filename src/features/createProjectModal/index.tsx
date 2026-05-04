@@ -1,6 +1,6 @@
 import { type FormEvent, useState } from 'react'
-import { colorOptions, durationOptions } from '../model/constants'
-import type { ProjectFormState } from '../model/types'
+import { colorOptions, durationOptions } from '../projectsModel/constants'
+import type { ProjectFormState } from '../projectsModel/types'
 
 type CreateProjectModalProps = {
   open: boolean

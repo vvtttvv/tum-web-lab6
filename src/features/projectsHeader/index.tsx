@@ -1,4 +1,4 @@
-import type { Theme } from '../model/types'
+import type { Theme } from '../projectsModel/types'
 
 type ProjectsHeaderProps = {
   theme: Theme

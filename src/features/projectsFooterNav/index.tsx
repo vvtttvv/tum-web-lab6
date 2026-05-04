@@ -6,7 +6,7 @@ type ProjectsFooterNavProps = {
 
 export function ProjectsFooterNav({ onCreate, activeTab, onNavigate }: ProjectsFooterNavProps) {
   return (
-  <nav className="bottom-nav" aria-label="Main navigation">
+    <nav className="bottom-nav" aria-label="Main navigation">
       <div className="flex-1 flex justify-start">
         <button
           type="button"

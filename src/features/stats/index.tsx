@@ -8,8 +8,8 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
-import type { Session } from '../model/types'
-import { formatHoursMinutes } from '../model/time'
+import type { Session } from '../projectsModel/types'
+import { formatHoursMinutes } from '../projectsModel/time'
 
 type StatsViewProps = {
   sessions: Session[]

@@ -1,5 +1,5 @@
-import type { Session } from '../../model/types'
-import { formatHoursMinutes, getTodayKey } from '../../model/time'
+import type { Session } from '../../projectsModel/types'
+import { formatHoursMinutes, getTodayKey } from '../../projectsModel/time'
 import type { TimerInfo } from '../hooks/usePomodoroTimer'
 import { getPhaseDurationSeconds } from '../utils/pomodoro'
 import { TimerStatus } from './TimerStatus'

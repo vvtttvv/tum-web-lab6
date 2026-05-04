@@ -1,6 +1,6 @@
-import type { Session } from '../model/types'
-import { usePomodoroTimer } from './hooks/usePomodoroTimer'
+import type { Session } from '../projectsModel/types'
 import { ProjectCard } from './components/ProjectCard'
+import { usePomodoroTimer } from './hooks/usePomodoroTimer'
 
 type ProjectsListProps = {
   sessions: Session[]

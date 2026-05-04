@@ -1,4 +1,4 @@
-import type { PomodoroPhase, TimerSettings } from '../../model/types'
+import type { PomodoroPhase, TimerSettings } from '../../projectsModel/types'
 
 export type ActiveTimerState = {
   sessionId: string

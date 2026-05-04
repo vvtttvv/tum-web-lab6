@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import type { Session } from '../../model/types'
-import { getTodayKey } from '../../model/time'
+import type { Session } from '../../projectsModel/types'
+import { getTodayKey } from '../../projectsModel/time'
 import {
   advanceTimerState,
   createTimerState,
