@@ -165,63 +165,6 @@ h2 {
   gap: 10px;
 }
 
-.day-tabs-row {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  padding-bottom: 4px;
-}
-
-.day-pill {
-  min-width: 78px;
-  border-radius: 16px;
-  border: 1px solid var(--color-border);
-  background: color-mix(in oklab, var(--color-surface-soft) 86%, transparent);
-  padding: 10px 12px;
-  display: grid;
-  gap: 2px;
-}
-
-.day-pill.active {
-  border-color: color-mix(in oklab, var(--color-brand) 60%, white 6%);
-  background: linear-gradient(165deg, color-mix(in oklab, var(--color-brand) 70%, black 8%), var(--color-brand));
-}
-
-.day-pill.active .day-label,
-.day-pill.active .day-date {
-  color: #f4fbff;
-}
-
-.day-label {
-  font-size: 0.85rem;
-  color: var(--color-muted);
-}
-
-.day-date {
-  font-family: var(--font-heading);
-  font-size: 1.65rem;
-  line-height: 1;
-  color: var(--color-title);
-}
-
-.filters-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.filters-group {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.filter-label {
-  font-size: 0.9rem;
-  color: var(--color-muted);
-}
 
 .icon-btn,
 .theme-btn,
@@ -281,27 +224,6 @@ h2 {
   color: var(--color-title);
 }
 
-.remaining-box {
-  display: grid;
-  gap: 2px;
-  border-radius: 14px;
-  border: 1px solid var(--color-border);
-  background: color-mix(in oklab, var(--color-surface-soft) 88%, transparent);
-  padding: 9px 14px;
-}
-
-.remaining-label {
-  font-size: 0.69rem;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--color-muted);
-}
-
-.remaining-value {
-  font-size: 1.6rem;
-  line-height: 1.1;
-  color: var(--color-title);
-}
 
 .task-card {
   border: 1px solid var(--color-border);
@@ -685,13 +607,6 @@ h2 {
     padding: 12px;
   }
 
-  .day-pill {
-    min-width: 70px;
-  }
-
-  .filters-row {
-    align-items: stretch;
-  }
 
   .task-card {
     padding: 14px;

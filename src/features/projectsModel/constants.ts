@@ -1,13 +1,4 @@
-import type { Day, ProjectFormState, TimerSettings } from './types'
-
-export const days: Day[] = [
-  { label: 'Fri', date: '27' },
-  { label: 'Sat', date: '28' },
-  { label: 'Sun', date: '29' },
-  { label: 'Mon', date: '30' },
-  { label: 'Tue', date: '31' },
-  { label: 'Wed', date: '1', active: true },
-]
+import type { ProjectFormState, TimerSettings } from './types'
 
 export const durationOptions = ['25m', '45m', '1h 00m', '1h 30m', '2h 00m', '3h 00m']
 

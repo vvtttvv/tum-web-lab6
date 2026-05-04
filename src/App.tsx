@@ -1,10 +1,8 @@
 import { type FormEvent, useEffect, useState } from 'react'
 import { CreateProjectModal } from './features/createProjectModal'
-import { DayTabs } from './features/dayTabs'
-import { ProjectsFilters } from './features/projectsFilters'
 import { ProjectsFooterNav } from './features/projectsFooterNav'
 import { ProjectsHeader } from './features/projectsHeader'
-import { buildId, days, defaultProjectForm } from './features/projectsModel/constants'
+import { buildId, defaultProjectForm } from './features/projectsModel/constants'
 import { indexedDbProjectsRepository } from './features/projectsModel/repository'
 import { parseDurationToSeconds } from './features/projectsModel/time'
 import type { ProjectFormState, Session, Theme } from './features/projectsModel/types'
@@ -76,12 +74,6 @@ function App() {
             onToggleTheme={toggleTheme}
             title={activeTab === 'stats' ? 'Stats overview' : 'All projects'}
           />
-          {activeTab === 'projects' ? (
-            <>
-              <DayTabs days={days} />
-              <ProjectsFilters count={sessions.length} />
-            </>
-          ) : null}
         </div>
 
         <div className="projects-scroll-area">

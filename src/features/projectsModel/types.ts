@@ -1,11 +1,5 @@
 export type Theme = 'light' | 'dark'
 
-export type Day = {
-  label: string
-  date: string
-  active?: boolean
-}
-
 export type Session = {
   id: string
   title: string
